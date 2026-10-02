@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASSET//VAULT</title>
+<style>
+:root{--bg:#070707;--panel:#101010;--panel2:#151515;--line:#292929;--text:#f0f0eb;--muted:#8c8c86;--accent:#d7ff45;--danger:#ff5d67}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:ui-monospace,SFMono-Regular,Consolas,monospace}button,input,textarea{font:inherit}button{cursor:pointer}body{min-height:100vh}.app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}.side{border-right:1px solid var(--line);padding:22px 16px;position:sticky;top:0;height:100vh}.brand{font-size:18px;letter-spacing:.08em;margin-bottom:7px}.sub{font-size:10px;color:var(--muted);line-height:1.5;margin-bottom:28px}.nav button,.add{width:100%;background:none;border:1px solid transparent;color:#aaa;text-align:left;padding:9px 10px;margin:2px 0;font-size:11px}.nav button:hover,.nav button.active{background:#171717;border-color:#303030;color:var(--text)}.nav button.active{color:var(--accent)}.add{margin-top:20px;border-color:#444;color:var(--accent);text-align:center}.privacy{position:absolute;left:16px;right:16px;bottom:18px;font-size:9px;color:#666;line-height:1.5}.main{padding:24px;min-width:0}.top{display:flex;gap:10px;align-items:center;margin-bottom:18px}.search{flex:1;background:#0d0d0d;border:1px solid var(--line);color:var(--text);padding:12px 13px;outline:none}.search:focus{border-color:#555}.btn{background:#161616;border:1px solid #363636;color:#ddd;padding:10px 12px;font-size:10px}.btn:hover{border-color:#666}.btn.accent{color:var(--accent);border-color:#5e6f25}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}.stat{border:1px solid var(--line);background:var(--panel);padding:14px}.stat b{display:block;font-size:20px;font-weight:500}.stat span{font-size:9px;color:var(--muted)}.drop{border:1px dashed #454545;background:#0c0c0c;padding:34px;text-align:center;margin-bottom:18px}.drop.over{border-color:var(--accent);background:#111506}.drop strong{display:block;color:#ddd;font-size:12px;letter-spacing:.08em}.drop small{display:block;color:#666;margin-top:7px;font-size:9px}.toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.count{font-size:10px;color:#777}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}.card{background:var(--panel);border:1px solid var(--line);min-width:0}.preview{height:150px;background:#080808;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}.preview img,.preview video{width:100%;height:100%;object-fit:cover}.fileicon{font-size:38px;color:#555}.meta{padding:11px}.name{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.type{font-size:9px;color:var(--muted);margin-top:4px}.tags{font-size:9px;color:var(--accent);margin-top:8px;min-height:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.note{font-size:9px;color:#999;margin-top:5px;height:28px;overflow:hidden;line-height:1.5}.actions{display:flex;gap:5px;margin-top:10px}.actions button{flex:1;background:#171717;border:1px solid #303030;color:#aaa;padding:7px 5px;font-size:8px}.actions button:hover{color:#fff;border-color:#555}.actions .delete:hover{color:var(--danger);border-color:#67343a}.empty{border:1px dashed #292929;padding:50px;text-align:center;color:#555;font-size:10px}.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.dialog{width:min(500px,100%);background:#101010;border:1px solid #3a3a3a;padding:18px}.dialog h2{font-size:13px;margin:0 0 16px;font-weight:500}.field{margin:12px 0}.field label{display:block;color:#777;font-size:9px;margin-bottom:6px}.field input,.field textarea{width:100%;background:#080808;border:1px solid #333;color:#eee;padding:9px;outline:none}.field textarea{height:100px;resize:vertical}.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}.modal-actions button{padding:9px 13px;background:#171717;color:#ddd;border:1px solid #383838;font-size:10px}.modal-actions .save{color:var(--accent);border-color:#5e6f25}.toast{position:fixed;right:18px;bottom:18px;background:#151515;border:1px solid #444;color:#ddd;padding:10px 12px;font-size:9px;opacity:0;transform:translateY(8px);transition:.2s}.toast.show{opacity:1;transform:none}@media(max-width:720px){.app{display:block}.side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}.privacy{position:static;margin-top:20px}.main{padding:14px}.stats{grid-template-columns:repeat(2,1fr)}.top{flex-wrap:wrap}.search{flex-basis:100%}.drop{padding:26px 12px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="brand">ASSET//VAULT</div>
+  <div class="sub">LOCAL CREATIVE ASSET ORGANIZER<br>INDEX YOUR CHAOS.</div>
+  <div class="nav" id="nav"></div>
+  <button class="add" id="addBtn">+ ADD FILES</button>
+  <input id="fileInput" type="file" multiple hidden>
+  <div class="privacy">LOCAL ONLY · FILES NEVER UPLOADED<br>STORED IN THIS BROWSER</div>
+</aside>
+<main class="main">
+  <div class="top">
+    <input class="search" id="search" placeholder="search filename, tag, note..." autocomplete="off">
+    <button class="btn accent" id="exportBtn">EXPORT INDEX</button>
+    <button class="btn" id="clearBtn">CLEAR</button>
+  </div>
+  <section class="stats">
+    <div class="stat"><b id="total">0</b><span>TOTAL</span></div>
+    <div class="stat"><b id="images">0</b><span>IMAGES</span></div>
+    <div class="stat"><b id="audio">0</b><span>AUDIO</span></div>
+    <div class="stat"><b id="video">0</b><span>VIDEO</span></div>
+  </section>
+  <section class="drop" id="drop">
+    <strong>DROP CREATIVE FILES HERE</strong>
+    <small>images · audio · video · documents · anything else</small>
+  </section>
+  <div class="toolbar"><span class="count" id="count">0 assets</span></div>
+  <section class="grid" id="grid"></section>
+</main>
+</div>
+<div class="modal" id="modal">
+  <div class="dialog">
+    <h2>EDIT ASSET</h2>
+    <div class="field"><label>NAME</label><input id="editName"></div>
+    <div class="field"><label>TAGS · comma separated</label><input id="editTags" placeholder="sketch, poster, unfinished"></div>
+    <div class="field"><label>NOTE</label><textarea id="editNote" placeholder="what is this, where does it belong, what should happen next?"></textarea></div>
+    <div class="modal-actions"><button id="cancelEdit">CANCEL</button><button class="save" id="saveEdit">SAVE</button></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const DB_NAME='asset-vault-db', STORE='assets';
+let db, assets=[], active='all', editingId=null;
+const $=s=>document.querySelector(s);
+const navItems=[['all','ALL ASSETS'],['image','IMAGES'],['audio','AUDIO'],['video','VIDEO'],['document','DOCUMENTS'],['other','OTHER']];
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),1800)}
+function openDB(){return new Promise((resolve,reject)=>{const r=indexedDB.open(DB_NAME,1);r.onupgradeneeded=()=>{const d=r.result;if(!d.objectStoreNames.contains(STORE))d.createObjectStore(STORE,{keyPath:'id'})};r.onsuccess=()=>{db=r.result;resolve()};r.onerror=()=>reject(r.error)})}
+function tx(mode='readonly'){return db.transaction(STORE,mode).objectStore(STORE)}
+function getAll(){return new Promise((resolve,reject)=>{const r=tx().getAll();r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
+function put(a){return new Promise((resolve,reject)=>{const r=tx('readwrite').put(a);r.onsuccess=resolve;r.onerror=()=>reject(r.error)})}
+function del(id){return new Promise((resolve,reject)=>{const r=tx('readwrite').delete(id);r.onsuccess=resolve;r.onerror=()=>reject(r.error)})}
+function clearDB(){return new Promise((resolve,reject)=>{const r=tx('readwrite').clear();r.onsuccess=resolve;r.onerror=()=>reject(r.error)})}
+function classify(file){const t=file.type||'';if(t.startsWith('image/'))return'image';if(t.startsWith('audio/'))return'audio';if(t.startsWith('video/'))return'video';if(t.startsWith('text/')||/\.(pdf|doc|docx|odt|rtf|md|txt|json|csv|html|css|js|py|zip|rar|7z)$/i.test(file.name))return'document';return'other'}
+function icon(type){return({image:'IMG',audio:'♫',video:'VID',document:'DOC',other:'FILE'})[type]||'FILE'}
+function size(n){if(n<1024)return n+' B';if(n<1048576)return(n/1024).toFixed(1)+' KB';if(n<1073741824)return(n/1048576).toFixed(1)+' MB';return(n/1073741824).toFixed(1)+' GB'}
+function nav(){ $('#nav').innerHTML=navItems.map(([id,label])=>`<button data-filter="${id}" class="${active===id?'active':''}">${label}</button>`).join('');document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{active=b.dataset.filter;nav();render()})}
+function filtered(){const q=$('#search').value.trim().toLowerCase();return assets.filter(a=>(active==='all'||a.type===active)&&(!q||(a.name+' '+(a.tags||[]).join(' ')+' '+(a.note||'')).toLowerCase().includes(q)))}
+function renderStats(){ $('#total').textContent=assets.length;$('#images').textContent=assets.filter(a=>a.type==='image').length;$('#audio').textContent=assets.filter(a=>a.type==='audio').length;$('#video').textContent=assets.filter(a=>a.type==='video').length }
+function render(){renderStats();const list=filtered();$('#count').textContent=`${list.length} asset${list.length===1?'':'s'}`;if(!list.length){$('#grid').innerHTML='<div class="empty">NO ASSETS FOUND.<br><br>DROP FILES ABOVE TO START BUILDING THE VAULT.</div>';return}$('#grid').innerHTML=list.map(a=>{let preview='';if(a.type==='image')preview=`<img src="${URL.createObjectURL(a.blob)}" alt="">`;else if(a.type==='video')preview=`<video src="${URL.createObjectURL(a.blob)}" muted></video>`;else preview=`<div class="fileicon">${icon(a.type)}</div>`;return `<article class="card"><div class="preview">${preview}</div><div class="meta"><div class="name" title="${esc(a.name)}">${esc(a.name)}</div><div class="type">${a.type.toUpperCase()} · ${size(a.size)}</div><div class="tags">${a.tags?.length?'#'+a.tags.join(' #'):'NO TAGS'}</div><div class="note">${esc(a.note||'')}</div><div class="actions"><button data-edit="${a.id}">EDIT</button><button data-copy="${a.id}">SAVE COPY</button><button class="delete" data-delete="${a.id}">DELETE</button></div></div></article>`}).join('');document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>edit(b.dataset.edit));document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>saveCopy(b.dataset.copy));document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>removeAsset(b.dataset.delete))}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function addFiles(files){for(const file of files){const a={id:crypto.randomUUID(),name:file.name,originalName:file.name,type:classify(file),mime:file.type||'application/octet-stream',size:file.size,created:new Date().toISOString(),tags:[],note:'',blob:file};await put(a)}assets=await getAll();render();toast(`${files.length} file${files.length===1?'':'s'} added`) }
+function edit(id){const a=assets.find(x=>x.id===id);if(!a)return;editingId=id;$('#editName').value=a.name;$('#editTags').value=(a.tags||[]).join(', ');$('#editNote').value=a.note||'';$('#modal').classList.add('show');$('#editName').focus()}
+async function saveEdit(){const a=assets.find(x=>x.id===editingId);if(!a)return;a.name=$('#editName').value.trim()||a.originalName;a.tags=$('#editTags').value.split(',').map(x=>x.trim()).filter(Boolean);a.note=$('#editNote').value.trim();await put(a);assets=await getAll();$('#modal').classList.remove('show');render();toast('asset updated')}
+async function removeAsset(id){const a=assets.find(x=>x.id===id);if(!a)return;if(!confirm(`Delete “${a.name}” from this browser vault?`))return;await del(id);assets=assets.filter(x=>x.id!==id);render();toast('asset removed')}
+async function saveCopy(id){const a=assets.find(x=>x.id===id);if(!a)return;const url=URL.createObjectURL(a.blob),link=document.createElement('a');link.href=url;link.download=a.name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('download started')}
+function exportIndex(){const data={app:'ASSET//VAULT',exported:new Date().toISOString(),storage:'IndexedDB local browser storage',assets:assets.map(({blob,...a})=>a)};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='asset-vault-index.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('index exported')}
+$('#addBtn').onclick=()=>$('#fileInput').click();$('#fileInput').onchange=e=>addFiles(e.target.files);$('#search').oninput=render;$('#exportBtn').onclick=exportIndex;$('#clearBtn').onclick=async()=>{if(!assets.length)return;if(confirm('Clear every asset from this browser vault? This cannot be undone.')){await clearDB();assets=[];render();toast('vault cleared')}};$('#cancelEdit').onclick=()=>$('#modal').classList.remove('show');$('#saveEdit').onclick=saveEdit;$('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').classList.remove('show')};document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#modal').classList.remove('show')});
+const drop=$('#drop');['dragenter','dragover'].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.classList.add('over')}));['dragleave','drop'].forEach(x=>drop.addEventListener(x,e=>{e.preventDefault();drop.classList.remove('over')}));drop.addEventListener('drop',e=>addFiles(e.dataTransfer.files));
+(async()=>{await openDB();assets=await getAll();nav();render()})().catch(e=>{console.error(e);toast('browser storage unavailable')});
+</script>
+</body>
+</html>
